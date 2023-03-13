@@ -22,7 +22,9 @@ class UserController {
             const excludedFields = ['page', 'sort', 'limit', 'search', 'fields'];
             excludedFields.forEach((item) => delete queryObject[item]);
             let queryString = JSON.stringify(queryObject);
+            //console.log(queryString); //{"age":{"lt":"20"}}
             queryString = queryString.replace(/\b(gte|gt|lt|lte|regex)\b/g, (match) => '$' + match);
+            //console.log(queryString); //{"age":{"$lt":"20"}}
             let query = User.find(JSON.parse(queryString));
             //Sorting
             if (req.query.sort) {
