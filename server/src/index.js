@@ -6,6 +6,8 @@ const morgan = require('morgan');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const colors = require('colors');
+const routes = require('@routes');
+const connectDB = require('./config/db');
 const port = process.env.PORT || 4000;
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false, limit: '1mb' }));
@@ -13,6 +15,8 @@ app.use(bodyParser.json({ limit: '1mb' }));
 app.use(helmet());
 app.use(cors());
 app.use(morgan('combined'));
+connectDB();
+routes(app);
 app.all('*', (req, res) => {
     return res.status(404).json({
         message: 'Router not found',

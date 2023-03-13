@@ -12,7 +12,8 @@
     "_moduleAliases": {
         "@root": ".",
         "@models": "src/models",
-        "@controllers": "src/controllers"
+        "@controllers": "src/controllers",
+        "@routes": "src/routes"
     },
     "dependencies": {
         "body-parser": "^1.20.2",
